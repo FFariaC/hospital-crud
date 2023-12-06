@@ -1,0 +1,24 @@
+version: "2.0"
+
+services: 
+
+  api:
+    container_name: apibase
+    build: .
+    ports:
+    - "3000:3000"
+    depends_on:
+    - "database"
+    volumes:
+    - .:/home/apibase
+
+  database:
+    container_name: apibase_db
+    image: postgres:10.5
+    restart: always
+    environment:
+      POSTGRES_DB: apibasedb
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+    ports:
+    - "5432:5432"  
